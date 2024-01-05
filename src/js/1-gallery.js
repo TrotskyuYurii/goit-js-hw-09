@@ -72,8 +72,16 @@ const images = [
 
 
 
+//++Формування подій і вілображення галереї
+const gallery = document.querySelector(".gallery");
 
+gallery.addEventListener('click', function (event) {
+  event.preventDefault();
 
+  let galleryDll = new SimpleLightbox('.gallery a');
+  galleryDll.on('show.simplelightbox', function () {});
+
+});
 
 
 
@@ -104,33 +112,3 @@ for (let img of images) {
 
 gallery.appendChild(fragment);
 //--
-
-
-
-
-
-
-
-//++Формування подій і відображення модального вікна галереї
-const gallery = document.querySelector(".gallery");
-
-
-gallery.addEventListener('click', function (event) {
-  event.preventDefault();
-
-  let galleryDll = new SimpleLightbox('.gallery a');
-  galleryDll.on('show.simplelightbox', function () {});
-
-});
-
-
-
-
-
-
-
-
-
-
-
-
