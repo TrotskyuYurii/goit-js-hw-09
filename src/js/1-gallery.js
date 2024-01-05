@@ -72,62 +72,6 @@ const images = [
 
 
 
-// //++Формування галереї
-// const gallery = document.querySelector(".gallery");
-// gallery.addEventListener('click', function (event) {
-//   event.preventDefault();
-
-//   if (event.target.classList.contains('gallery-image')) {
-//     const largeImageSource = event.target.getAttribute('data-source');
-
-//     //++Вивод зображення у модалку через бібліотеку
-//     instance = basicLightbox.create(htmlString, {
-//       onShow: () => {
-//         document.addEventListener('keydown', handleKeyDown);
-//       },
-//       onClose: () => {
-//         document.removeEventListener('keydown', handleKeyDown);
-//       }
-//     });
-//     instance.show();
-//     //--
-
-// gallery.on('error.simplelightbox', function (e) {
-// 	console.log(e); // some usefull information
-// });
-
-// // with jQuery nearly the same
-// let gallery = $('.gallery a').simpleLightbox();
-// gallery.on('show.simplelightbox', function () {
-// 	// do something…
-// });
-
-
-//   }
-// });
-// //--
-
-
-
-//++Формування галереї
-const gallery = document.querySelector(".gallery");
-
-
-gallery.addEventListener('click', function (event) {
-  event.preventDefault();
-
-  let gallery = new SimpleLightbox('.gallery a');
-  gallery.on('show.simplelightbox', function () {
-    // do something…
-  });
-});
-
-
-
-
-
-
-
 
 
 
@@ -160,3 +104,33 @@ for (let img of images) {
 
 gallery.appendChild(fragment);
 //--
+
+
+
+
+
+
+
+//++Формування подій і відображення модального вікна галереї
+const gallery = document.querySelector(".gallery");
+
+
+gallery.addEventListener('click', function (event) {
+  event.preventDefault();
+
+  let galleryDll = new SimpleLightbox('.gallery a');
+  galleryDll.on('show.simplelightbox', function () {});
+
+});
+
+
+
+
+
+
+
+
+
+
+
+
