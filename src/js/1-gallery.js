@@ -102,5 +102,11 @@ gallery.appendChild(fragment);
 
 
 //Підключення єкземпляру бібліотекии
-let galleryDll = new SimpleLightbox('.gallery a');
+var options = {
+  captionsData: "alt",
+  captionDelay: 250,
+  captions: true
+};
+
+let galleryDll = new SimpleLightbox('.gallery a',options);
 galleryDll.on('show.simplelightbox', function () {});
