@@ -1,9 +1,9 @@
-// Описаний в документації
+//Підключення бібліотеки і стилів
 import SimpleLightbox from "simplelightbox";
-// Додатковий імпорт стилів
 import "simplelightbox/dist/simple-lightbox.min.css";
 
 
+//Масив єлементів галереї
 const images = [
   {
     preview:
@@ -72,20 +72,10 @@ const images = [
 
 
 
-//++Формування подій і вілображення галереї
-const gallery = document.querySelector(".gallery");
-
-gallery.addEventListener('click', function (event) {
-  event.preventDefault();
-
-  let galleryDll = new SimpleLightbox('.gallery a');
-  galleryDll.on('show.simplelightbox', function () {});
-
-});
-
-
 
 //++Формування структури галереї
+const gallery = document.querySelector(".gallery");
+
 const fragment = document.createDocumentFragment();
 for (let img of images) {
   const listItem = document.createElement('li');
@@ -93,9 +83,6 @@ for (let img of images) {
 
   const listLink = document.createElement('a');
   listLink.classList.add('gallery-link');
-  // listLink.addEventListener('click', function (event) {
-  //   event.preventDefault();
-  // }); 
   listLink.href = img.original;
 
   const imgElement = document.createElement('img');
@@ -112,3 +99,8 @@ for (let img of images) {
 
 gallery.appendChild(fragment);
 //--
+
+
+//Підключення єкземпляру бібліотекии
+let galleryDll = new SimpleLightbox('.gallery a');
+galleryDll.on('show.simplelightbox', function () {});
