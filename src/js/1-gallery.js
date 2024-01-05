@@ -1,4 +1,8 @@
-let instance = null;
+// Описаний в документації
+import SimpleLightbox from "simplelightbox";
+// Додатковий імпорт стилів
+import "simplelightbox/dist/simple-lightbox.min.css";
+
 
 const images = [
   {
@@ -66,58 +70,70 @@ const images = [
   },
 ];
 
-//++ Прослуховування натискання esc
-function handleKeyDown(event) {
-  if (event.code === 'Escape') {
-    instance.close();
-    document.removeEventListener('keydown', handleKeyDown);
-  }
-}
-//--
+
+
+// //++Формування галереї
+// const gallery = document.querySelector(".gallery");
+// gallery.addEventListener('click', function (event) {
+//   event.preventDefault();
+
+//   if (event.target.classList.contains('gallery-image')) {
+//     const largeImageSource = event.target.getAttribute('data-source');
+
+//     //++Вивод зображення у модалку через бібліотеку
+//     instance = basicLightbox.create(htmlString, {
+//       onShow: () => {
+//         document.addEventListener('keydown', handleKeyDown);
+//       },
+//       onClose: () => {
+//         document.removeEventListener('keydown', handleKeyDown);
+//       }
+//     });
+//     instance.show();
+//     //--
+
+// gallery.on('error.simplelightbox', function (e) {
+// 	console.log(e); // some usefull information
+// });
+
+// // with jQuery nearly the same
+// let gallery = $('.gallery a').simpleLightbox();
+// gallery.on('show.simplelightbox', function () {
+// 	// do something…
+// });
+
+
+//   }
+// });
+// //--
+
+
 
 //++Формування галереї
 const gallery = document.querySelector(".gallery");
+
+
 gallery.addEventListener('click', function (event) {
   event.preventDefault();
 
-  if (event.target.classList.contains('gallery-image')) {
-    const largeImageSource = event.target.getAttribute('data-source');
-    
-    //++Формування коду для віводу у бібліотеку
-    const fragmentDiv  = document.createElement('div');
-    fragmentDiv.classList.add('modal');
-
-    const fragmentImg = document.createElement('img');
-    fragmentImg.src  = largeImageSource;
-    fragmentImg.width  = '1121';
-    fragmentImg.height = '640';
-    
-    fragmentDiv.appendChild(fragmentImg);
-    var htmlString = fragmentDiv.outerHTML;
-    console.log(htmlString);
-    //--
-
-    //++Вивод зображення у модалку через бібліотеку
-    instance = basicLightbox.create(htmlString, {
-      onShow: () => {
-        document.addEventListener('keydown', handleKeyDown);
-      },
-      onClose: () => {
-        document.removeEventListener('keydown', handleKeyDown);
-      }
-    });
-    instance.show();
-    //--
-
-  }
+  let gallery = new SimpleLightbox('.gallery a');
+  gallery.on('show.simplelightbox', function () {
+    // do something…
+  });
 });
-//--
 
 
 
 
 
-//++вивід галереї
+
+
+
+
+
+
+
+//++Формування структури галереї
 const fragment = document.createDocumentFragment();
 for (let img of images) {
   const listItem = document.createElement('li');
@@ -125,9 +141,9 @@ for (let img of images) {
 
   const listLink = document.createElement('a');
   listLink.classList.add('gallery-link');
-  listLink.addEventListener('click', function (event) {
-    event.preventDefault();
-  }); 
+  // listLink.addEventListener('click', function (event) {
+  //   event.preventDefault();
+  // }); 
   listLink.href = img.original;
 
   const imgElement = document.createElement('img');
