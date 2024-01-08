@@ -30,7 +30,7 @@ registerForm.addEventListener('input', function (event) {
 });
 
 
-// Відключаємо скидання форми дія за-замовченням
+// Сабмит форми
 registerForm.addEventListener('submit', (event) => {
 
     event.preventDefault();
