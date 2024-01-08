@@ -4,6 +4,19 @@ let feedbackFormState = {
     message: ''
 }
 
+//Перевірка стану локального сховища при завантаженні сторінки
+document.addEventListener('DOMContentLoaded', function () {
+
+    feedbackFormState = JSON.parse(localStorage.getItem('feedback-form-state'));
+
+     if (feedbackFormState) {
+      document.querySelector('input[name="email"]').value = feedbackFormState.email || '';
+      document.querySelector('textarea[name="message"]').value = feedbackFormState.message || '';
+     }
+  });
+
+
+//Записуємо у локальне сховище при кожній подіі ІНПУТ
 registerForm.addEventListener('input', function(event) {
     const target = event.target;
 
@@ -14,13 +27,12 @@ registerForm.addEventListener('input', function(event) {
     }
 
     localStorage.setItem("feedback-form-state", JSON.stringify(feedbackFormState));
-
-    // console.table(JSON.parse(localStorage.getItem("feedback-form-state")));
-
   });
 
 
+//Відключаємо скидання форми дія за-замовченням
 registerForm.addEventListener('submit', (event) => {
   event.preventDefault();
-   
+  document.querySelector('form').reset();
+  console.log(feedbackFormState);
 });
